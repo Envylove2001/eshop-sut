@@ -1,0 +1,9 @@
+# AI Critique — HW04 Automation Testing
+
+## Student: 23127379 — Thái Minh Huy
+
+The AI was useful for turning structured HW2 cases into a consistent Playwright architecture, but its first drafts repeatedly confused plausible code with verified behavior. In FR-08, it selected label-based locators even though the visible Profile labels were not programmatically associated with their controls. It also prepared the cart before a Profile navigation and reload, overlooking that the React cart existed only in memory. Both mistakes produced broad failures that looked like SUT defects until screenshots, traces, React source, and reruns exposed the automation errors. In FR-15, the AI added price-format assertions to name and description boundary helpers, causing unrelated failures, and initially treated a disputed tab sequence as an unquestionable product requirement. These errors came from insufficient grounding: an LLM predicts common application structures and tends to generalize one assertion across similar tests, while this SUT contains unusual accessibility markup, client-only state, and inconsistencies between HW2 sources.
+
+The strongest collaboration pattern was therefore evidence-driven iteration. I supplied the exact TC, SRS, and known-bug sources; required external test data and spec-correct expectations; inspected selectors against React or retained browser evidence; then classified every failed TC/browser result before calling it a bug. Later FR-08 reruns demonstrate why historical failures must remain visible rather than being hidden. The main lesson is that AI should accelerate test design and diagnosis, not decide truth. Reliable automation requires a human to challenge locator semantics, state assumptions, assertion relevance, and source precedence, while preserving failed runs and corrections in an auditable record.
+
+**Word count:** 240

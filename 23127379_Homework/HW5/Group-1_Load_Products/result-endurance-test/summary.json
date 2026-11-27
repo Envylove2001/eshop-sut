@@ -1,0 +1,147 @@
+{
+    "metrics": {
+        "http_req_sending": {
+            "avg": 0.0157092683676597,
+            "min": 0.001,
+            "med": 0.016,
+            "max": 0.219,
+            "p(90)": 0.022,
+            "p(95)": 0.025
+        },
+        "http_req_receiving": {
+            "p(95)": 0.058,
+            "avg": 0.03518652013525899,
+            "min": 0.005,
+            "med": 0.035,
+            "max": 0.658,
+            "p(90)": 0.051
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 100
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 52048,
+            "thresholds": {
+                "rate<0.05": false
+            },
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0
+        },
+        "http_req_blocked": {
+            "med": 0.005,
+            "max": 1.516,
+            "p(90)": 0.007,
+            "p(95)": 0.008,
+            "avg": 0.005727924223791196,
+            "min": 0
+        },
+        "data_received": {
+            "count": 24015386,
+            "rate": 26647.582000712395
+        },
+        "iterations": {
+            "count": 52048,
+            "rate": 57.75269853972277
+        },
+        "http_reqs": {
+            "count": 52048,
+            "rate": 57.75269853972277
+        },
+        "vus_max": {
+            "max": 100,
+            "value": 100,
+            "min": 100
+        },
+        "http_req_waiting": {
+            "min": 0.201,
+            "med": 0.955,
+            "max": 15.409,
+            "p(90)": 1.52,
+            "p(95)": 1.778,
+            "avg": 1.0342991277282438
+        },
+        "data_sent": {
+            "rate": 4851.226677336713,
+            "count": 4372032
+        },
+        "iteration_duration": {
+            "med": 1499.3942080000002,
+            "max": 2005.727375,
+            "p(90)": 1902.0247331,
+            "p(95)": 1952.55650615,
+            "avg": 1501.4022857858547,
+            "min": 1001.313792
+        },
+        "http_req_connecting": {
+            "max": 0.472,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.0005836919766369505,
+            "min": 0,
+            "med": 0
+        },
+        "http_req_duration{expected_response:true}": {
+            "min": 0.214,
+            "med": 1.007,
+            "max": 15.444,
+            "p(90)": 1.583,
+            "p(95)": 1.8476499999999978,
+            "avg": 1.0851949162311763
+        },
+        "checks": {
+            "passes": 156144,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_duration": {
+            "avg": 1.0851949162311763,
+            "min": 0.214,
+            "med": 1.007,
+            "max": 15.444,
+            "p(90)": 1.583,
+            "p(95)": 1.8476499999999978,
+            "thresholds": {
+                "p(95)<2000": false
+            }
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "GET /api/products/:id status 200": {
+                    "name": "GET /api/products/:id status 200",
+                    "path": "::GET /api/products/:id status 200",
+                    "id": "48ac0d72d401235886f1adcfd5a627e4",
+                    "passes": 52048,
+                    "fails": 0
+                },
+                "GET /api/products/:id has id field": {
+                    "id": "3df779d4fc664c335f9813372c2f86ac",
+                    "passes": 52048,
+                    "fails": 0,
+                    "name": "GET /api/products/:id has id field",
+                    "path": "::GET /api/products/:id has id field"
+                },
+                "GET /api/products/:id has name field": {
+                    "name": "GET /api/products/:id has name field",
+                    "path": "::GET /api/products/:id has name field",
+                    "id": "8e88b21a36ef31fcb3ac01d7b21fada2",
+                    "passes": 52048,
+                    "fails": 0
+                }
+            }
+    }
+}

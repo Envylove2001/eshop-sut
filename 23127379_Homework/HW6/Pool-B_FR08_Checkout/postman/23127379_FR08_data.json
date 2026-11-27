@@ -1,0 +1,1317 @@
+[
+  {
+    "testCaseId": "FR08-DOM-001",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Create only U1's order at server cart total 250000 and clear only U1's cart.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-002",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":100000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 100000,
+    "expectedSideEffect": "Create U1's order at 100000 and clear the one-item cart.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-06/FR-08",
+    "fixtureProfile": "U1_CART_ONE_100000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 100000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-003",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":200000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 200000,
+    "expectedSideEffect": "Create U1's order using price multiplied by quantity and clear the cart.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-07/FR-08",
+    "fixtureProfile": "U1_CART_QUANTITY_200000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 200000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-006",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "No order; U1 cart unchanged; no parser or database internals disclosed.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-007",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "[]",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject non-object JSON; no order; U1 cart unchanged.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-008",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "missing",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication rejection with no order/cart mutation; state portion needs separate non-GET evidence.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08/SEC-02; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-009",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "emptyBearer",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication rejection with no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-010",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "basic",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject the non-Bearer scheme with no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-011",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "invalidSignature",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject the tampered JWT; no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "TOKEN_NEGATIVE",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-012",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "expired",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject the expired JWT; no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "TOKEN_NEGATIVE",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-015",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":249999,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; never create total 249999.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-016",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250001,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; never create total 250001.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-017",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":0,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; never create a zero-total order from the client value.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-018",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":-1,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; never create a negative-total order.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-020",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; omitted client total is never authoritative.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-021",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":null,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; null client total is never authoritative.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-022",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":\"250000\",\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using numeric C=250000; never trust or coerce the client string as the order total.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DOM-029",
+    "technique": "Domain Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"unexpected_property\":\"sentinel\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore the unknown property; protected order/cart state is unaffected by the sentinel.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DT-001",
+    "technique": "Decision Table Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "missing",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication rejection dominates all cart/total/address conditions; no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08/SEC-02; api_specification 4",
+    "fixtureProfile": "RR_AUTH",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-DT-002",
+    "technique": "Decision Table Testing",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":1,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Recalculate from cart, create the correct U1 order, and clear U1 cart.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "RR_SUCCESS_U1_CART_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-001",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Create only U1's correct order, clear only U1's cart, and disclose no secrets.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08/SEC-02; api_specification 4",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-002",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "missing",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication rejection; no order/cart mutation or internal leakage.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08/SEC-02; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-003",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "emptyBearer",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication rejection; no state mutation or token echo.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-004",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "basic",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject the Basic scheme; no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-005",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "malformed",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Generic authentication failure; no internals or mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "NO_CART_REQUIRED_FOR_HTTP_ORACLE",
+    "needsU1": false,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-006",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "invalidSignature",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject altered claims; no state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "TOKEN_NEGATIVE",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-007",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "expired",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Authentication failure; no refresh, token echo, or state mutation.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02; api_specification 4",
+    "fixtureProfile": "TOKEN_NEGATIVE",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-008",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "algNone",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "reject",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": null,
+    "expectedSideEffect": "Reject the unsigned token and trust no claims.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-02",
+    "fixtureProfile": "TOKEN_NEGATIVE",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 0,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-009",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU2",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 150000,
+    "expectedSideEffect": "Use only U2's cart and create only U2's order at C-U2=150000; leave U1 unchanged.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4",
+    "fixtureProfile": "U1_U2_DISTINCT_CARTS",
+    "needsU1": true,
+    "needsU2": true,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 1
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 150000
+  },
+  {
+    "testCaseId": "FR08-SEC-010",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"user_id\":{{runtimeU2Id}}}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore injected user_id; any order remains U1-owned and U2 is untouched.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3; README FR-08",
+    "fixtureProfile": "U1_U2_DISTINCT_CARTS",
+    "needsU1": true,
+    "needsU2": true,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 1
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 150000
+  },
+  {
+    "testCaseId": "FR08-SEC-011",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":1,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using C=250000; never create an order total of 1.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-012",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"role\":\"admin\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore role; no role elevation; checkout invariants preserved.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3; README FR-12",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-013",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"status\":\"delivered\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore status; no accepted order starts as delivered.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "api_specification 4.3; README FR-10",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SEC-014",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"' OR '1'='1' --\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject or treat address literally; no query error, bypass, or cross-user effect.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-05; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-SCH-006",
+    "technique": "Security/Schema Checklist",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":1,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "If a total is returned it is numeric C=250000; any persisted created order also uses C=250000.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-DOM-001",
+    "technique": "Domain Testing gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":1e309,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or accept using finite server C=250000; never persist the runtime-extreme client value.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-DT-001",
+    "technique": "Decision Table Testing gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":100000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 150000,
+    "expectedSideEffect": "Use current C-new=150000 rather than stale T=100000, include current cart state, then clear U1 cart.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08",
+    "fixtureProfile": "U1_TEMPORAL_CART_100000_TO_150000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 1
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 150000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-SEC-001",
+    "technique": "Security/Schema gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"items\":[{\"id\":999,\"price\":1,\"quantity\":999}]}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore injected items; any order contains only server-cart items and total C=250000.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-SEC-002",
+    "technique": "Security/Schema gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\",\"discount_amount\":249999}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore discount; accepted order remains C=250000 and records no coupon usage.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08/FR-09; api_specification 4.3/5.1",
+    "fixtureProfile": "U1_CART_MULTI_250000_NO_COUPON",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-SEC-003",
+    "technique": "Security/Schema gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout?total_amount=1",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject unchanged or ignore query pollution; any accepted order uses server C=250000, never query value 1.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-SEC-004",
+    "technique": "Security/Schema gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":1,\"total_amount\":250000,\"shipping_address\":\"123 Le Loi, TP.HCM\"}",
+    "statusOracle": "branch",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Reject ambiguous JSON unchanged or accept using server C=250000; disclose no parser internals.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  },
+  {
+    "testCaseId": "FR08-EXT-SEC-005",
+    "technique": "Security/Schema gap analysis",
+    "enabled": true,
+    "disabledReason": "",
+    "authMode": "validU1",
+    "targetPath": "/api/checkout",
+    "bodyTemplate": "{\"total_amount\":250000,\"shipping_address\":\"12 O'Connor Street\"}",
+    "statusOracle": "success",
+    "securityOracle": "noInternal,noSensitive",
+    "expectedServerTotal": 250000,
+    "expectedSideEffect": "Checkout succeeds without SQL error/truncation; literal address is handled safely, order total is 250000, and cart clears.",
+    "manualStateEvidenceRequired": true,
+    "requirementSource": "README SEC-05/FR-08; api_specification 4.3",
+    "fixtureProfile": "U1_CART_MULTI_250000",
+    "needsU1": true,
+    "needsU2": false,
+    "cartU1Items": [
+      {
+        "id": 910001,
+        "name": "HW06 Fixture A",
+        "price": 100000,
+        "quantity": 2
+      },
+      {
+        "id": 910002,
+        "name": "HW06 Fixture B",
+        "price": 50000,
+        "quantity": 1
+      }
+    ],
+    "cartU2Items": [],
+    "fixtureCartU1Total": 250000,
+    "fixtureCartU2Total": 0
+  }
+]

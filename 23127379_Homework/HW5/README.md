@@ -1,0 +1,108 @@
+# HW05 — Performance Testing Report
+- **Student ID**: 23127379
+- **Course**: Software Testing — HCMUS
+- **Submission Date**: 2026-08-16
+- **EShop SUT**: http://localhost:3000 | [Repository](https://github.com/AkiraTomori/eshop-sut)
+- **Note**: Student use first version of HW5 (Mr. Lâm Quang Vũ's version)
+---
+
+## Test Summary Report
+
+### Scenarios Run
+
+| # | Scenario | Endpoint Group | Endpoints | Test Plan File | Status |
+|---|----------|----------------|-----------|----------------|--------|
+| 1 | Load Testing | Read-heavy | `GET /api/products`, `GET /api/products/:id` | `23127379_Load_20260813.js` | ✅ Complete |
+| 2 | Spike Testing | Auth-heavy | `POST /api/login`, `PUT /api/users/me` | `23127379_Spike_20260814.js` | ✅ Complete |
+| 3 | Stress Testing | Transactional | `POST /api/cart` → `POST /api/checkout` | `23127379_Stress_20260814.js` | ✅ Complete |
+
+### Endpoint Groups Covered
+
+| Group | Scenario | Endpoints |
+|---|---|---|
+| Read-heavy | Load Testing | `GET /api/products`, `GET /api/products/:id` |
+| Auth-heavy | Spike Testing | `POST /api/login`, `PUT /api/users/me` (incl. account lockout) |
+| Transactional | Stress Testing | `POST /api/cart`, `POST /api/checkout` |
+
+### Performance Results Summary (UPDATED AFTER RE-RUN)
+
+| Scenario | p95 (ms) | Error Rate | Throughput | Notes |
+|----------|----------|------------|------------|-------|
+| Load Test | 1.92ms | 0.00% | 53.56 req/s | Excellent stability for read-heavy operations |
+| Spike Test | 5.84ms | 0.00% | 76.52 req/s | Absorbed huge auth spikes flawlessly |
+| Stress Test | 27.88ms | 0.00% | 108.08 req/s | Perfect stability up to 200 VUs, database fully recovered |
+
+### Endurance Threshold (Soak Test)
+- **Test duration**: 15 minutes at sustained load
+- **Load Test Endurance**: p95 remained excellent at 1.85ms, with a perfect 0.00% error rate.
+- **Stress Test Endurance**: Completed successfully with 0.00% error rate, system remained stable over 15 minutes.
+- **Hardware**: Apple M5, 16GB RAM, macOS (Resource usage strictly monitored via `top` and `ps`)
+
+### Report Views Used
+
+| # | Report Type | Scenario |
+|---|---|---|
+| 1 | CSV Raw Export (`--out csv`) | All 3 Groups |
+| 2 | HTML Summary Report (`k6-reporter`) | All 3 Groups (Standardized `report.html`) |
+| 3 | JSON Summary (`--summary-export`) | All 3 Groups |
+
+### Bugs & Performance Issues Found
+
+| # | Type | Endpoint | Severity | GitHub Issue | Status |
+|---|------|----------|----------|--------------|--------|
+| *Total: 0 issues* | | | | | |
+
+*No critical bugs found during test execution. System survived up to 200 VUs without exceeding error thresholds.*
+
+### Demo Video
+> [!IMPORTANT]
+> 🎥 **Demo Video**: [Playlist](https://www.youtube.com/playlist?list=PLJK2f6zFJvro)
+> Duration: ~10 minutes | Language: Vietnamese narration
+
+Alternatively, you can view the individual scenario demos:
+- [Part 1](https://www.youtube.com/watch?v=0kUpL7fM7f0&list=PLJK2f6zFJvro&index=1&t=1s)
+- [Part 2](https://www.youtube.com/watch?v=4EAFqtF-ylA&list=PLJK2f6zFJvro&index=2)
+- [Part 3](https://www.youtube.com/watch?v=A9rvXhyaO8s&list=PLJK2f6zFJvro&index=3)
+- [Part 4](https://www.youtube.com/watch?v=6EqVIwJVBUg&list=PLJK2f6zFJvro&index=4)
+- [Part 5](https://www.youtube.com/watch?v=KmiJCaTnmQQ&list=PLJK2f6zFJvro&index=5)
+- [Part 6](https://www.youtube.com/watch?v=4_q5Jh1yIKw&list=PLJK2f6zFJvro&index=6)
+- [Part 7](https://www.youtube.com/watch?v=FAfYMj2GmyY&list=PLJK2f6zFJvro&index=7)
+- [Part 8](https://www.youtube.com/watch?v=7tbZGI6zpfc&list=PLJK2f6zFJvro&index=8)
+- [Part 9](https://www.youtube.com/watch?v=Goc4Id4BysQ&list=PLJK2f6zFJvro&index=9)
+---
+
+## Self-Assessment
+
+| **No.** | **Criteria** | **Grade** | **Self-Assessed Grade** |
+| --- | --- | --- | --- |
+| **1** | Task 1 — Load testing | 20 | 20 |
+| **2** | Task 1 — Stress testing | 20 | 20 |
+| **3** | Task 1 — Spike testing | 20 | 20 |
+| **4** | Task 2 — AI analysis + misinterpretation hunt | 10 | 10 |
+| **5** | Task 3 — Continuous Performance Testing proposal | 10 | 10 |
+| **6** | Agent Skills | 10 | 10 |
+| | **Total** | **100** | 100 |
+
+---
+
+## Repository Structure
+
+```text
+23127379_Homework/HW5/
+├── README.md                          ← main project file
+├── hw05_report.md                     ← main analytical report
+├── hw05_audit_log.md                  ← full AI interaction log
+├── ai_audit_report.md                 ← Appendix A: AI Audit Report
+├── ai_critique.md                     ← Appendix B: AI Critique (200–300 words)
+├── ci_pipeline_proposal.md            ← Task 3: CI pipeline
+├── lockout_reset_log.md               ← Skill 7 lockout reset history
+├── git_commit_log.txt                 ← required by HW05
+├── Group-1_Load_Products/
+│   ├── results-load-test/             ← Fresh reports + resource_usage.txt
+│   └── result-endurance-test/         ← Fresh reports + resource_usage.txt
+├── Group-2_Spike_Auth/
+│   └── results/                       ← Fresh reports + resource_usage.txt
+├── Group-3_Stress_Checkout/
+│   └── result-stress/                 ← Fresh reports + resource_usage.txt
+└── review_history/
+```
